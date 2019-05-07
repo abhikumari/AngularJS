@@ -1,0 +1,28 @@
+li {
+ list-style: none;
+ border-bottom: 1px solid black;
+ padding: 20px;
+}
+
+#myList {
+ padding: 40px;
+ margin-bottom: 40px;
+
+ width: 400px;
+ border: 1px solid black;
+ -webkit-box-shadow: 0 2px 5px 0 grey;
+ box-shadow: 0 2px 5px 0 grey;
+}
+
+span {
+ padding-left: 200px;
+}
+
+ul {
+ margin-left: -40px;
+}
+
+input {
+ height: 44px;
+ width: 200px;
+}

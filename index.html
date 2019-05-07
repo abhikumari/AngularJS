@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <title>MyFirst Application on AngularJS</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ <script src="ui-bootstrap-tpls-2.5.0.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-theme.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+ <style>
+
+
+  input{
+   margin: 20px 0 0 10px;
+   padding: 10px;
+  }
+
+ </style>
+</head>
+
+<body ng-app="myModule">
+ <div ng-controller="myController">
+  <div class="row">
+   <div class="col-md-8 col-md-offset-2">
+
+    <b style="font-size: 20px">Search:</b><input type="text" placeholder="serach by title..." ng-model="employee.title"><br><br>
+    <table class="table table-striped" style="padding: 10px;">
+     <thead>
+      <tr>
+       <th ng-click="sort('id')">Id
+        <span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse }"></span></th>
+       <th ng-click="sort('userId')">userId
+        <span class="glyphicon sort-icon" ng-show="sortKey=='userId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse }"></span></th>
+       <th ng-click="sort('title')">Title
+        <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse }"></span></th>
+       <th ng-click="sort('body')">Body
+        <span class="glyphicon sort-icon" ng-show="sortKey=='body'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse }"></span></th>
+     </thead>
+     <tbody>
+      <tr ng-repeat="employee in employees|startFrom:(currentPage-1)*pageSize |limitTo:5 |filter:employee|orderBy:sortKey:reverse">
+       <td>{{employee.id}}</td>
+       <td>{{employee.userId}}</td>
+
+       <td><a href="#employees">{{employee.title}}</a></td>
+       <td>{{employee.body}}</td>
+       <td><i class="fa fa-trash" ng-click="deleteData(employee.id)"></i></td>
+       <td><i class="fa fa-pencil-square-o" aria-hidden="true" ng-click="empGet(employee.id)"></i></td>
+      </tr>
+     </tbody>
+    </table>
+    <br><br>
+    <div> <span style="color: {{color}};"><i>{{status}}</i></span></div>
+    <input type="text" ng-model="employees.id" placeholder="enter Id...">
+    <input type="text" ng-model="employees.userId" placeholder="enter userId...">
+    <input type="text" ng-model="employees.title" placeholder="enter title...">
+    <input type="text" ng-model="employees.body" placeholder="enter body...">
+    <button class="btn btn-success btn-lg" ng-click="insertEmp(employees)">Insert Employee</button>
+
+    <div>
+     <span style="border: 1px solid yellow">{{empDetails.id}}</span>
+     <input type="text" ng-model="empDetails.userId">
+     <input type="text" ng-model="empDetails.title">
+     <input type="text" ng-model="empDetails.body">
+     <button class="btn btn-success btn-lg" ng-click="updateData(empDetails)">Update Employee</button>
+
+    </div>
+
+    <pagination total-items="employees.length" ng-model="currentPage" items-per-page="pageSize"></pagination>
+   </div>
+  </div>
+
+ </div>
+ <script>
+
+ </script>
+ <script src="app.js"></script>
+ <script src="myController.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+ <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>-->
+
+
+</body>
+
+</html>

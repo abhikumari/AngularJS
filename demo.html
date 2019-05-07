@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Document</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3//css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+</head>
+
+<body ng-app="myModule">
+ <div ng-controller="myController">
+  <table class="table table-bordered">
+   <tr>
+    <td>Enter Text</td>
+    <td><input type="text" ng-model="input"></td>
+   </tr>
+   <tr>
+    <td>Result</td>
+    <td><input type="text" ng-model="output"></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><button ng-click="convertString(input)">Convert</button></td>
+   </tr>
+
+  </table>
+  
+ </div>
+ <script>
+  var app = angular
+   .module("myModule", [])
+   .controller("myController", function($scope) {
+    $scope.convertString = function(input) {
+     if (!input) {
+      return input;
+     }
+     var output = "";
+     for (i = 0; i < input.length; i++) {
+      if (i > 0 && input[i] == input[i].toUpperCase()) {
+       output = output + " ";
+      }
+      output = output + input[i];
+     }
+     $scope.output = output;
+    }
+   });
+
+ </script>
+</body>
+
+</html>
+
+
+
+// Routing
+
+//modules
+
+
+// Pagination baased on user choice --- /allPosts ---> all posts (srchable/sorted based on title)
+// /post ----->specific post --- edit button makes editable--> delete button
+
+// https://jsonplaceholder.typicode.com/
